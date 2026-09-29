@@ -1,0 +1,9 @@
+# Python 3.11+ packages for notebooks/01_eda_spotify_youtube.ipynb
+# Install with:  python -m pip install -r requirements.txt
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+ipykernel>=6.22   # kernel for VS Code / Jupyter
