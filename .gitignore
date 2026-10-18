@@ -1,0 +1,6 @@
+# API lookup progress from scripts/add_release_dates.py (re-creatable)
+scripts/release_date_cache/
+scripts/release_date_cache_sample/
+__pycache__/
+mbdump.tar.bz2
+

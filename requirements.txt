@@ -7,3 +7,4 @@ scikit-learn>=1.4
 matplotlib>=3.8
 seaborn>=0.13
 ipykernel>=6.22   # kernel for VS Code / Jupyter
+requests>=2.31    # scripts/add_release_dates.py
