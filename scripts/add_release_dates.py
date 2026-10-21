@@ -21,6 +21,8 @@ New columns, one value per song:
                             0 = typical for its age, +1 = 10x a typical song of the same age
   spotify_tier_age_adj, youtube_tier_age_adj
                             popularity quartile within the song's age band: Q1 (Low) ... Q4 (Top)
+  <column>_rank             percentile rank (0-1) of 10 audio features and 4 popularity measures, so
+                            Tableau can compute Spearman's ρ as CORR() of two rank columns
 
 How the date is chosen:
   Streaming services (Deezer, Spotify) give the release date of the edition they carry, which for
@@ -826,6 +828,19 @@ def add_age_columns(out):
         out[col] = pd.Categorical(tiers, categories=TIER_LABELS, ordered=True)
 
 
+# Tableau has no Spearman function. Spearman's ρ is the ordinary correlation of the two columns'
+# ranks, so CORR([Loudness_rank], [log_stream_rank]) in Tableau gives it.
+RANK_COLUMNS = ["Loudness", "Instrumentalness", "Acousticness", "duration_min", "Energy",
+                "Danceability", "Valence", "Speechiness", "Tempo", "Liveness",
+                "log_stream", "stream_vs_age", "log_views", "views_vs_age"]
+
+
+def add_rank_columns(out):
+    """Percentile rank of each RANK_COLUMNS column (0-1, ties averaged, empty stays empty), as <column>_rank."""
+    for c in RANK_COLUMNS:
+        out[c + "_rank"] = out[c].rank(pct=True).round(6)
+
+
 def merge_and_save(df):
     out = df.copy()
     sources = Sources()
@@ -846,6 +861,7 @@ def merge_and_save(df):
         out["youtube_published_at"] = pd.to_datetime(vid.map(yt_date), errors="coerce", utc=True).dt.tz_localize(None)
         out["years_on_youtube"] = ((COLLECTION_DATE - out["youtube_published_at"]).dt.days / 365.25).round(2)
     add_age_columns(out)
+    add_rank_columns(out)
 
     out.to_csv(OUT, index=False)
     n, dated = len(out), out["release_date"].notna()

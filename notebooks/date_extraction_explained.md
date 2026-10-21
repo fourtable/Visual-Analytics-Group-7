@@ -4,7 +4,7 @@ The v2 dataset had no release dates, so an old song and a new song were compared
 
 | | |
 |---|---|
-| Output file | `dataset/spotify_youtube_release_date.csv`: the v2 clean table (all 53 columns unchanged) plus 13 date and age columns |
+| Output file | `dataset/spotify_youtube_release_date.csv`: the v2 clean table (all 53 columns unchanged) plus 13 date and age columns and 14 rank columns for Tableau |
 | Scripts | `scripts/add_release_dates.py` (builds the CSV), `scripts/musicbrainz_dump.py` (reads the MusicBrainz database dump) |
 | Notebook | `notebooks/01_eda_spotify_youtube_v3.ipynb` |
 | Coverage | 18,256 of 18,847 tracks (96.9%) have a date |
@@ -52,6 +52,7 @@ The dataset was collected on **7 February 2023** (Kaggle), so a song's age is th
 | 4. MusicBrainz | `scripts/musicbrainz_dump.py` streams the full MusicBrainz database dump once and keeps only the dataset's artists, songs and albums. | 7.6 GB download, about 15 minutes. It keeps 9,827 artists, 42,850 release groups and 558,994 recordings |
 | 5. Combine | For each song, collect every candidate date and choose one with the rules in section 4. Record its precision, source and confidence. | |
 | 6. Age columns | Compute years since release, age band, age-relative popularity scores and age-adjusted tiers (section 7). | |
+| 7. Rank columns | Add the percentile rank of 10 audio features and 4 popularity measures, so Tableau can compute Spearman's ρ (section 7). | |
 
 Two optional steps are built in but were not used:
 
@@ -251,8 +252,11 @@ The notebook lists the too-recent cases (section 2.4). Treat individual dates as
 | `age_band` | `<3 mo`, `3–6 mo`, `6–12 mo`, `1–2 y`, `2–3 y`, `3–5 y`, `5–8 y`, `8–12 y`, `12–20 y`, `20+ y` |
 | `stream_vs_age`, `views_vs_age`, `likes_vs_age`, `comments_vs_age` | log10 count minus the median of songs in the same age band. 0 = typical for its age; +1 = 10× a typical song of the same age; −1 = a tenth |
 | `spotify_tier_age_adj`, `youtube_tier_age_adj` | Popularity quartile within the song's age band: `Q1 (Low)` to `Q4 (Top)` |
+| `Loudness_rank`, `Instrumentalness_rank`, `Acousticness_rank`, `duration_min_rank`, `Energy_rank`, `Danceability_rank`, `Valence_rank`, `Speechiness_rank`, `Tempo_rank`, `Liveness_rank`, `log_stream_rank`, `stream_vs_age_rank`, `log_views_rank`, `views_vs_age_rank` | Percentile rank (0–1) of that column across all rows, with ties averaged. Tableau has no Spearman function, but Spearman's ρ is the ordinary correlation of ranks, so `CORR([Loudness_rank], [stream_vs_age_rank])` gives it |
 
-The age-relative columns are empty where the raw count is missing (for example, no Spotify streams).
+The age-relative and rank columns are empty where the raw count is missing (for example, no Spotify streams).
+
+The rank columns are ranked over all rows, so `CORR()` on a filtered subset is very close to Spearman's ρ on that subset, but not identical. On the dashboards' 17,380 songs, the largest difference across the 40 feature–popularity pairs is 0.0014, so they agree to two decimal places.
 
 ---
 
@@ -267,6 +271,7 @@ The age-relative columns are empty where the raw count is missing (for example, 
   - `Spotify hit (age-adjusted) = [spotify_tier_age_adj] = "Q4 (Top)"`
   - `YouTube hit (age-adjusted) = [youtube_tier_age_adj] = "Q4 (Top)"`
   - `Quadrant (age-adjusted)` uses the same formula as `Quadrant`, with these two fields.
+- **Spearman's ρ in Tableau:** use `CORR()` of two rank columns, for example `CORR([Loudness_rank], [stream_vs_age_rank])` against `CORR([Loudness_rank], [log_stream_rank])`, to compare a feature's link with age-adjusted and raw popularity (section 7).
 - **A "confirmed dates only" filter** (`release_date_confidence = confirmed`, 82% of tracks) as a robustness toggle.
 - **Undated tracks show as Null.** Exclude them from age-based sheets.
 - The row rules don't change: the dashboards' 17,380 songs (`platform_lean` not Null) stay the same, and 16,925 of them have a date.
