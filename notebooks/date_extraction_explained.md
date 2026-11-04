@@ -385,6 +385,7 @@ All of these results hold on confirmed dates only (within 0.03).
 **Limitations**
 - About 9% of dates may still have the wrong year (95% range: about 4–21%), mostly by one year. Known errors are listed in section 5.5.
 - There are no YouTube upload dates, so views, likes and comments are aged from the song's release.
+- **No penalty or credit for songs older than the platforms.** A song released before YouTube (Dec 2005) or Spotify (Oct 2008) could only collect plays from the platform's launch, but `years_since_release` counts from the song's release. A per-year rate starting at the launch was tested in the notebook (§4) and rejected because it over-corrects. The age bands absorb part of it, because every song in the 20+ y band predates both platforms and is only compared with songs in the same position. The 12–20 y band (2003–2011) mixes songs released before and after the launches, so for those songs the effect remains. Spotify also launched in different countries at different times (the US in 2011), which no single cut-off captures.
 - Wikidata doesn't always mark compilations, so a few songs carry a compilation's date.
 - A single released before its album can carry the album date.
 - The analysis is correlational, and the sample holds about the top 10 tracks per artist.
