@@ -1,0 +1,38 @@
+.conclusion {
+  max-width: var(--text-width);
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+}
+
+.lead {
+  margin-bottom: var(--space-8);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.future {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--text-width);
+  padding-left: 1.4em;
+}
+
+.future li::marker {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .lead {
+    margin-bottom: var(--space-7);
+  }
+}

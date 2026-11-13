@@ -1,0 +1,51 @@
+[
+  {
+    "id": "dash-defining-a-hit",
+    "slug": "defining-a-hit",
+    "src": "https://public.tableau.com/views/DefiningaHit/DefiningaHit",
+    "width": 1200,
+    "height": 800
+  },
+  {
+    "id": "dash-disagree",
+    "slug": "disagree",
+    "src": "https://public.tableau.com/views/WherethePlatformsDisagree/Wheretheplatformsdisagree",
+    "width": 1366,
+    "height": 768
+  },
+  {
+    "id": "dash-hit-sound",
+    "slug": "hit-sound",
+    "src": "https://public.tableau.com/views/Whatdoesviralhitssoundlike/Whatdoesviralhitssoundlike",
+    "width": 1366,
+    "height": 768
+  },
+  {
+    "id": "dash-top3-platform",
+    "slug": "top3-platform",
+    "src": "https://public.tableau.com/views/Top3AudioFeaturesPerPlatform/Top3AudioFeaturesPerPlatform",
+    "width": 1366,
+    "height": 768
+  },
+  {
+    "id": "dash-top3-both",
+    "slug": "top3-both",
+    "src": "https://public.tableau.com/views/Top3AudioFeaturesofBothPlatforms/Top3AudioFeaturesofBothPlatforms",
+    "width": 1366,
+    "height": 768
+  },
+  {
+    "id": "dash-sound-or-artist",
+    "slug": "sound-or-artist",
+    "src": "https://public.tableau.com/views/Soundorartist/Soundorartist",
+    "width": 1366,
+    "height": 768
+  },
+  {
+    "id": "dash-flags",
+    "slug": "flags-by-quadrant",
+    "src": "https://public.tableau.com/views/FlagsbyQuadrant/FlagsbyQuadrant",
+    "width": 1000,
+    "height": 600
+  }
+]

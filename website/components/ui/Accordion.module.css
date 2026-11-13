@@ -1,0 +1,76 @@
+.list {
+  border-bottom: 1px solid var(--rule);
+}
+
+.item {
+  border-top: 1px solid var(--rule);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: var(--space-3) 0;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary:hover .title {
+  color: var(--accent);
+}
+
+.title {
+  flex: 1;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: var(--fs-label);
+  font-weight: 500;
+}
+
+.chevron {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.item[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+}
+
+/* Motion row 7: the panel opens smoothly (browsers without ::details-content just open). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.motion) .item::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size var(--dur-base) var(--ease-out),
+      content-visibility var(--dur-base) allow-discrete;
+  }
+
+  :global(.motion) .item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron {
+    transition: none;
+  }
+}

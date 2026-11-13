@@ -1,0 +1,50 @@
+.button {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 30;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 0 4px 14px rgb(31 35 40 / 0.12);
+  color: var(--accent);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    visibility 0s linear var(--dur-fast);
+}
+
+.button[data-state="shown"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* Inside Explore it disappears at once, so it never sits over (or animates next to) a dashboard. */
+.button[data-state="suppressed"] {
+  transition: none;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 767px) {
+  .button {
+    right: var(--space-4);
+    bottom: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button[data-state="shown"] {
+    transition: none;
+  }
+}

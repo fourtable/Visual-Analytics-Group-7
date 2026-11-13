@@ -1,0 +1,31 @@
+.block {
+  padding-top: var(--space-7);
+}
+
+.heading {
+  margin-bottom: var(--space-1);
+}
+
+/* "Skip past this dashboard": visible only when it has keyboard focus. */
+.skip {
+  display: inline-block;
+  margin-block: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip:not(:focus):not(:focus-visible) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

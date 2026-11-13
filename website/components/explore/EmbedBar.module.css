@@ -1,0 +1,79 @@
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  min-height: 52px;
+  padding-bottom: var(--space-2);
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  color: var(--muted);
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+
+.hint {
+  display: none;
+  flex-basis: 100%;
+  order: 3;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+@media (orientation: portrait) {
+  .hint {
+    display: block;
+  }
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-btn);
+  background: var(--bg);
+  color: var(--accent);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.action:hover {
+  background: var(--surface);
+}
+
+.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.primary:hover {
+  background: #2f5178;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Full screen above 1024 px; Open interactive view below. Both are in the HTML; CSS picks one. */
+.narrowOnly {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .wideOnly {
+    display: none;
+  }
+
+  .narrowOnly {
+    display: inline-flex;
+  }
+}

@@ -1,0 +1,70 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.cards > li {
+  display: grid;
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--fs-h3);
+}
+
+.stat {
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
+.chart {
+  margin-top: var(--space-6);
+}
+
+/* "See the chart": a native <summary>, aligned with the content column. */
+.summary {
+  display: flex;
+  width: fit-content;
+  margin-left: max(var(--gutter), (100% - var(--content-width)) / 2);
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.chart[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.chart[open] .closedLabel,
+.chart:not([open]) .openLabel {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron {
+    transition: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

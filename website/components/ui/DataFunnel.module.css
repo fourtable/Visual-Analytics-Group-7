@@ -1,0 +1,71 @@
+/* One shared set of columns (subgrid), so every bar starts and every count sits in line. */
+.steps {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr) max-content;
+  gap: var(--space-4) var(--space-5);
+}
+
+.step {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  row-gap: var(--space-2);
+}
+
+.label {
+  font-weight: 600;
+}
+
+.note {
+  color: var(--muted);
+  font-size: var(--fs-label);
+  line-height: 1.45;
+}
+
+.bar {
+  display: block;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--rule);
+}
+
+.count {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.unit {
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 500;
+}
+
+.footnote {
+  margin-top: var(--space-5);
+  max-width: var(--text-width);
+  color: var(--muted);
+  font-size: var(--fs-label);
+}
+
+@media (max-width: 767px) {
+  .steps {
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  .meta {
+    grid-column: 1 / -1;
+  }
+
+  .bar {
+    height: 20px;
+  }
+
+  .count {
+    font-size: 1.125rem;
+  }
+}

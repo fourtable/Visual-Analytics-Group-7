@@ -1,0 +1,40 @@
+.band {
+  padding-block: var(--section-pad);
+  background: var(--bg);
+}
+
+.surface {
+  background: var(--surface);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-3);
+  max-width: var(--text-width);
+  margin-bottom: var(--space-7);
+}
+
+.intro {
+  color: var(--muted);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+}
+
+/* h3 heading for a block inside a section */
+.blockHeading {
+  margin-bottom: var(--space-5);
+}
+
+.block + .block {
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 767px) {
+  .header {
+    margin-bottom: var(--space-6);
+  }
+
+  .block + .block {
+    margin-top: var(--space-7);
+  }
+}
