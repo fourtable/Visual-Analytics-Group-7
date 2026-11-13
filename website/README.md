@@ -119,16 +119,21 @@ dashboards, and the embedded Tableau dashboards themselves stay white.
 
 ## Deploy (Vercel)
 
-The site is plain static files (`out/`), so any static host works. On Vercel:
+**Live site:** https://visual-analytics-group-7.vercel.app (Vercel project
+`visual-analytics-group-7` in the "Josh's projects" team).
 
-1. Import the GitHub repository in Vercel (**Add New → Project**).
-2. Set **Root Directory** to `website` and keep the **Next.js** framework preset.
-   No environment variables are needed.
-3. Deploy. Every push to `main` then redeploys production, and every branch or pull
-   request gets its own preview link.
+The project is connected to this GitHub repository, so deploys are automatic:
 
-Vercel previews are protected by Vercel login by default; turn that off under
-**Settings → Deployment Protection** if people outside the Vercel team should see them.
+- **Push to `main`** → Vercel builds the `website` folder and updates the live site.
+- **Push any other branch or open a pull request** → Vercel builds a preview with its
+  own link (shown on the pull request). Previews require a Vercel login by default;
+  change that under **Settings → Deployment Protection** if outsiders should see them.
+
+Project settings: Root Directory `website`, Next.js preset, production branch `main`.
+No environment variables are needed. If a build fails, open the deployment in the
+Vercel dashboard (**Deployments**) to read its build log.
+
+The site is plain static files (`out/`), so any static host would also work.
 
 ## Website development (notes for report section 9.7)
 
