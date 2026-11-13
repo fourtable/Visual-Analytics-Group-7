@@ -1,0 +1,334 @@
+/*
+ * Design tokens and base styles.
+ * Values come from the Build Plan › Visual design and › Motion and animation.
+ * Light mode only: the embedded Tableau dashboards are white.
+ */
+
+:root {
+  /* Colour */
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --ink: #1f2328;
+  --muted: #5b6470;
+  --rule: #e3e6ea;
+  --accent: #3a6290;
+  /* Quadrant fills: exact matches to the dashboards. Only ever mean their quadrant. */
+  --both: #4e79a7;
+  --spotify: #59a14f;
+  --youtube: #e15759;
+  --neither: #f28e2b;
+  /* Quadrant text colours (WCAG AA on white) */
+  --both-text: #3a6290;
+  --spotify-text: #3b7a34;
+  --youtube-text: #c0393b;
+  --neither-text: #b35c0c;
+  --placeholder: #fff4d6;
+  --placeholder-border: #e0b84c;
+
+  /* Type: sizes scale from the phone value (390 px) to the desktop value (1440 px) */
+  --font-display: var(--font-space-grotesk), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+  --fs-display: clamp(2.25rem, 1.786rem + 1.905vw, 3.5rem); /* 36 → 56 */
+  --fs-h2: clamp(1.75rem, 1.564rem + 0.762vw, 2.25rem); /* 28 → 36 */
+  --fs-h3: clamp(1.25rem, 1.204rem + 0.19vw, 1.375rem); /* 20 → 22 */
+  --fs-body: clamp(1rem, 0.977rem + 0.095vw, 1.0625rem); /* 16 → 17 */
+  --fs-lead: clamp(1.125rem, 1.032rem + 0.381vw, 1.375rem); /* 18 → 22 */
+  --fs-label: 0.875rem; /* 14 */
+  --fs-stat: clamp(2rem, 1.814rem + 0.762vw, 2.5rem); /* 32 → 40 */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Layout */
+  --text-width: 720px;
+  --content-width: 1120px;
+  --dash-width: 1366px;
+  --gutter: 24px;
+  --section-pad: var(--space-9);
+  --nav-h: 64px;
+  --strip-h: 44px;
+  --radius-btn: 8px;
+  --radius-card: 12px;
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 800ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --stagger: 80ms;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+    --section-pad: var(--space-8);
+  }
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  interpolate-size: allow-keywords;
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.3;
+}
+
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+summary {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: #d8e3f0;
+}
+
+/* Anchors land below the sticky nav (and, inside Explore, below the chapter strip). */
+[id] {
+  scroll-margin-top: var(--nav-h);
+}
+
+#explore [id] {
+  scroll-margin-top: calc(var(--nav-h) + var(--strip-h) + var(--space-4));
+}
+
+/* ---------- Layout helpers ---------- */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-width) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Dashboard blocks break out of the content column to the dashboards' 1366 px. */
+.container-wide {
+  max-width: calc(var(--dash-width) + 2 * var(--gutter));
+}
+
+.measure {
+  max-width: var(--text-width);
+}
+
+/* ---------- Utilities ---------- */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2000;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-btn);
+  background: var(--ink);
+  color: #fff;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* [Bracketed] text: team input still to fill. Visible on purpose. */
+.placeholder {
+  padding: 0 0.3em;
+  border: 1px dashed var(--placeholder-border);
+  border-radius: 4px;
+  background: var(--placeholder);
+  color: var(--ink);
+  font-style: normal;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Small secondary line for raw-count figures */
+.raw-line {
+  color: var(--muted);
+  font-size: var(--fs-label);
+}
+
+/* ---------- Motion (Build Plan › Motion and animation) ----------
+ * Everything below only applies when the head script added `motion` to <html>
+ * (reduced motion not requested, JavaScript running). Without it, every element
+ * is in its final state in the HTML.
+ */
+
+.countup-num {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.growbar {
+  position: relative;
+  overflow: hidden;
+}
+
+.growbar-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(var(--value, 1));
+  background: var(--bar-color, var(--accent));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. Section reveal: fade in and rise 16 px; grid items follow 80 ms apart (max 6). */
+  .motion .reveal:not(.is-visible),
+  .motion .reveal-group:not(.is-visible) > * {
+    opacity: 0;
+  }
+
+  .motion .reveal.is-visible,
+  .motion .reveal-group.is-visible > * {
+    animation: reveal-in var(--dur-base) var(--ease-out) backwards;
+  }
+
+  .motion .reveal-group.is-visible > :nth-child(2) {
+    animation-delay: calc(var(--stagger) * 1);
+  }
+  .motion .reveal-group.is-visible > :nth-child(3) {
+    animation-delay: calc(var(--stagger) * 2);
+  }
+  .motion .reveal-group.is-visible > :nth-child(4) {
+    animation-delay: calc(var(--stagger) * 3);
+  }
+  .motion .reveal-group.is-visible > :nth-child(5) {
+    animation-delay: calc(var(--stagger) * 4);
+  }
+  .motion .reveal-group.is-visible > :nth-child(n + 6) {
+    animation-delay: calc(var(--stagger) * 5);
+  }
+
+  /* 9, 10, 12. Growing (or shrinking) bars: scaleX only. */
+  .motion .growbar-fill {
+    transition: transform var(--bar-dur, var(--dur-slow)) var(--bar-ease, var(--ease-out))
+      var(--bar-delay, 0ms);
+  }
+
+  .motion .growbar:not(.is-visible) .growbar-fill {
+    transform: scaleX(0);
+  }
+
+  .motion .growbar[data-mode="shrink"]:not(.is-visible) .growbar-fill {
+    transform: scaleX(1);
+  }
+}
+
+/* `translate` (not `transform`) so it never fights hover lifts on cards. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}

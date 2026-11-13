@@ -1,0 +1,39 @@
+.chip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: var(--fs-stat);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.md .value {
+  font-size: clamp(1.5rem, 1.36rem + 0.57vw, 1.875rem);
+}
+
+.label {
+  color: var(--ink);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.measure {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.source {
+  margin-top: var(--space-1);
+  color: var(--muted);
+  font-size: 0.8125rem;
+}

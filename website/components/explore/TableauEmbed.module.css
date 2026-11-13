@@ -1,0 +1,154 @@
+.stage {
+  position: relative;
+}
+
+/* Inline: sized to the dashboard's shape, never wider than the dashboard itself. */
+.area {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden; /* also crops Tableau's own toolbar strip under the viz */
+  border-radius: 6px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform-origin: 0 0;
+}
+
+.stage:not([data-status="ready"]) .host {
+  pointer-events: none;
+}
+
+/* Motion row 6: the dashboard fades in once it reports it's ready. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.motion) .stage[data-status="ready"] .host {
+    animation: host-in var(--dur-base) var(--ease-out);
+  }
+}
+
+@keyframes host-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Loading: a --surface box with the dashboard's name and a soft shimmer (the only loop). */
+.loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.8) 50%, transparent 80%);
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.motion) .loading::before {
+    animation: shimmer 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.loadingLabel {
+  position: relative;
+  color: var(--muted);
+  font-size: var(--fs-label);
+  font-weight: 500;
+}
+
+.error {
+  position: absolute;
+  bottom: var(--space-4);
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--space-4));
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-btn);
+  background: var(--bg);
+  box-shadow: 0 4px 16px rgb(31 35 40 / 0.12);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  transform: translateX(-50%);
+}
+
+/* Under 1024 px the inline frame always shows the screenshot; the live dashboard opens in the overlay. */
+@media (max-width: 1023px) {
+  .stage[data-mode="inline"] .host,
+  .stage[data-mode="inline"] .loading {
+    visibility: hidden;
+  }
+}
+
+/* Expanded: the browser's full-screen mode, or the on-site overlay. Same element, never moved. */
+.expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.expanded .area {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  min-height: 0;
+  padding: var(--space-3);
+}
+
+.expanded .frame {
+  position: relative;
+  inset: auto;
+}
+
+.barExpanded {
+  padding: var(--space-2) var(--gutter);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stage::backdrop {
+  background: #fff;
+}

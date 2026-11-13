@@ -1,0 +1,59 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: var(--space-7);
+}
+
+.subheading {
+  margin-bottom: var(--space-5);
+}
+
+.quadGrid,
+.glossGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.quadGrid > li,
+.glossGrid > li {
+  display: grid;
+}
+
+.motifRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+.note {
+  margin-top: var(--space-5);
+}
+
+.raw {
+  margin-top: var(--space-2);
+}
+
+/* Motion row 11 (optional): hovering a quadrant card highlights its square in the figure. */
+@media (hover: hover) {
+  .quadrants:has([data-qcard="both"]:hover) .motifRow [data-q]:not([data-q="both"]),
+  .quadrants:has([data-qcard="spotify"]:hover) .motifRow [data-q]:not([data-q="spotify"]),
+  .quadrants:has([data-qcard="youtube"]:hover) .motifRow [data-q]:not([data-q="youtube"]),
+  .quadrants:has([data-qcard="neither"]:hover) .motifRow [data-q]:not([data-q="neither"]) {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 599px) {
+  .quadGrid,
+  .glossGrid {
+    grid-template-columns: 1fr;
+  }
+}

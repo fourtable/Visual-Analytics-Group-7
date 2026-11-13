@@ -1,0 +1,136 @@
+.motif {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 440px;
+}
+
+.plot {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  aspect-ratio: 1;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.square {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.square[data-q="both"] {
+  fill: var(--both);
+}
+.square[data-q="spotify"] {
+  fill: var(--spotify);
+}
+.square[data-q="youtube"] {
+  fill: var(--youtube);
+}
+.square[data-q="neither"] {
+  fill: var(--neither);
+}
+
+/* Labels sit on white chips in the -text colours, so they pass AA on any square. */
+.label {
+  position: absolute;
+  width: max-content;
+  max-width: 46%;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(31 35 40 / 0.12);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.label[data-q="both"] {
+  color: var(--both-text);
+}
+.label[data-q="spotify"] {
+  color: var(--spotify-text);
+}
+.label[data-q="youtube"] {
+  color: var(--youtube-text);
+}
+.label[data-q="neither"] {
+  color: var(--neither-text);
+}
+
+.axisX,
+.axisY {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.axisX {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+}
+
+.axisY {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.compact {
+  max-width: 300px;
+}
+
+.compact .label {
+  padding: 3px 8px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .label {
+    padding: 3px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Motion row 8: the squares appear one by one (Neither, Spotify-only, YouTube-only, Hit on both). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.motion) .animated .square,
+  :global(.motion) .animated .label {
+    animation: square-in var(--dur-base) var(--ease-out) backwards;
+  }
+
+  :global(.motion) .animated [data-q="neither"] {
+    animation-delay: 100ms;
+  }
+  :global(.motion) .animated [data-q="spotify"] {
+    animation-delay: 220ms;
+  }
+  :global(.motion) .animated [data-q="youtube"] {
+    animation-delay: 340ms;
+  }
+  :global(.motion) .animated [data-q="both"] {
+    animation-delay: 460ms;
+  }
+}
+
+@keyframes square-in {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}

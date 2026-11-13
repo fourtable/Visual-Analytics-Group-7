@@ -1,0 +1,49 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+/* The faint hover shadow fades in with opacity (only transform and opacity animate). */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 6px 18px rgb(31 35 40 / 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+.title {
+  font-size: var(--fs-h3);
+}
+
+.body {
+  color: var(--ink);
+}
