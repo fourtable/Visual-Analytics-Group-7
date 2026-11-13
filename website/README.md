@@ -86,7 +86,7 @@ Copy rules from the build plan still apply: association wording only ("tends to"
 
 - The site only **loads** dashboards and listens for `firstinteractive`. It never
   changes a filter, parameter or selection, and never links to Tableau Public.
-- On screens 1024 px and wider, each dashboard loads when it comes within 600 px of the
+- On screens 1024 px and wider, each dashboard loads when it comes within 1200 px of the
   screen, at most two at a time, and is scaled down to fit narrower windows. Once
   loaded it stays loaded, so readers keep their own filters. Under 1024 px, readers see
   the screenshot and an **Open interactive view** button that opens the live dashboard
@@ -143,7 +143,9 @@ The site is plain static files (`out/`), so any static host would also work.
    by Quadrant worksheet is shown in a 1000 × 600 px frame.
 2. **Embedding.** A React client component (`TableauEmbed`) creates Tableau's
    `<tableau-viz>` web component (Embedding API v3) when the dashboard comes within
-   600 px of the screen, with at most two loading at once. The component scales each
+   1200 px of the screen, with at most two loading at once, and the page pre-connects to
+   Tableau's servers. While a dashboard is on screen the background colour animation
+   pauses, so the browser's effort goes to the dashboard. The component scales each
    dashboard to the available width with a CSS transform, shows a loading shimmer, keeps
    a screenshot fallback (captured automatically at 2×) for phones, slow connections
    and readers without JavaScript, and offers Try again if a dashboard fails to load

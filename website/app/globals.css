@@ -202,6 +202,12 @@ body::after {
   body::after {
     animation: wash-green 12s ease-in-out infinite alternate;
   }
+
+  /* Held still while a dashboard is on screen (components/motion/WashPauser.tsx). */
+  .wash-paused body::before,
+  .wash-paused body::after {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes wash-red {

@@ -2,6 +2,7 @@ import { BackToTop } from "@/components/layout/BackToTop";
 import { Footer } from "@/components/layout/Footer";
 import { Nav } from "@/components/layout/Nav";
 import { StoryLinks } from "@/components/layout/StoryLinks";
+import { WashPauser } from "@/components/motion/WashPauser";
 import { DeepDive } from "@/components/sections/DeepDive";
 import { Explore } from "@/components/sections/Explore";
 import { Hero } from "@/components/sections/Hero";
@@ -42,6 +43,7 @@ export default function Home() {
       <Footer />
       <BackToTop label={ui.backToTop} hideWithin="explore" />
       <StoryLinks />
+      <WashPauser />
     </>
   );
 }

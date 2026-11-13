@@ -4,7 +4,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { MotionReady } from "@/components/motion/MotionReady";
 import { site } from "@/content/site";
-import { EMBEDDING_API_SRC } from "@/lib/tableau";
+import { EMBEDDING_API_SRC, TABLEAU_HOSTS } from "@/lib/tableau";
 import { THEME_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
@@ -68,7 +68,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT + motionFlag }} />
-        <link rel="preconnect" href="https://public.tableau.com" />
+        {TABLEAU_HOSTS.map((host) => (
+          <link key={host} rel="preconnect" href={host} />
+        ))}
       </head>
       <body>
         {children}

@@ -41,10 +41,11 @@ type FullscreenDocument = Document & {
 type FullscreenTarget = HTMLElement & { webkitRequestFullscreen?: () => void };
 
 const WIDE = "(min-width: 1024px)";
-/** Start loading when the frame is this close to the screen (Build Plan: 600 px). */
-const NEAR = "600px 0px";
+/** Start loading when the frame is this close to the screen. The build plan said 600 px;
+ * 1200 px gives Tableau's ~2 s start-up time to finish before the reader arrives. */
+const NEAR = "1200px 0px";
 /** An unfinished load this far away gives up its slot so nearer dashboards can load. */
-const FAR = "1600px 0px";
+const FAR = "2400px 0px";
 /** Show the screenshot and Try again after this long on screen without `firstinteractive`. */
 const ERROR_AFTER_MS = 15_000;
 
@@ -58,7 +59,7 @@ function currentFullscreenElement(): Element | null {
  *
  * The server HTML holds the screenshot, sized to the dashboard, so the page never
  * jumps and works without JavaScript. On screens 1024 px and wider the live embed is
- * created once the frame is within 600 px of the screen (at most two loading at once),
+ * created once the frame is within 1200 px of the screen (at most two loading at once),
  * scaled down to fit with transform: scale(), and kept for good once ready, so the
  * reader's own filters and selections survive scrolling away and back.
  * Under 1024 px, Open interactive view shows the same live dashboard in a full-screen
@@ -121,7 +122,7 @@ export function TableauEmbed({
     [id, setStatus],
   );
 
-  // Lazy load on wide screens when the frame comes within 600 px.
+  // Lazy load on wide screens when the frame comes within 1200 px.
   useEffect(() => {
     if (wide && near && statusRef.current === "idle") request(false);
   }, [wide, near, request]);

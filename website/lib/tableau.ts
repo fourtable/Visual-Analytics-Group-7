@@ -9,3 +9,13 @@ export const TOOLBAR_CROP_PX = 27;
 
 export const EMBEDDING_API_SRC =
   "https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js";
+
+/**
+ * Hosts a Tableau Public embed loads from (checked 13 Nov 2026): the views themselves
+ * and Tableau's asset CDN (~40 requests per dashboard). The page pre-opens connections
+ * to both so the first dashboard starts faster. Harmless if Tableau changes them.
+ */
+export const TABLEAU_HOSTS = [
+  "https://public.tableau.com",
+  "https://d1ixzvs6g7du49.cloudfront.net",
+];
