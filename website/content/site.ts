@@ -54,6 +54,8 @@ export const ui = {
   menuOpen: "Menu",
   menuClose: "Close",
   backToTop: "Back to top",
+  /** Theme toggle in the nav (a pressed/unpressed switch) */
+  darkMode: "Dark mode",
   /** Says which popularity measure a figure uses. */
   measureAdjusted: "Age-adjusted",
   /** Prefix of the small secondary line under a figure. */

@@ -1,0 +1,32 @@
+.toggle {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-btn);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background: var(--surface);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Moon in the light theme (switch to dark); sun in the dark theme (switch to light). */
+.sun,
+:global([data-theme="dark"]) .moon {
+  display: none;
+}
+
+:global([data-theme="dark"]) .sun {
+  display: block;
+}

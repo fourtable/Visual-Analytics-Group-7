@@ -1,7 +1,7 @@
 .footer {
   padding-block: var(--space-8) var(--space-6);
-  background: var(--ink);
-  color: #fff;
+  background: var(--footer-bg);
+  color: var(--footer-ink);
   font-size: var(--fs-label);
 }
 
@@ -14,12 +14,12 @@
 
 .course {
   margin-top: var(--space-2);
-  color: #d0d5db;
+  color: var(--footer-muted);
 }
 
 .disclaimer {
   margin-top: var(--space-6);
   padding-top: var(--space-5);
   border-top: 1px solid rgb(255 255 255 / 0.18);
-  color: #d0d5db;
+  color: var(--footer-muted);
 }

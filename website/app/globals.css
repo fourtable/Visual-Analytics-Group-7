@@ -1,29 +1,49 @@
 /*
  * Design tokens and base styles.
  * Values come from the Build Plan › Visual design and › Motion and animation.
- * Light mode only: the embedded Tableau dashboards are white.
+ * Light theme by default; a dark theme (toggle in the nav) overrides the colour
+ * tokens below. The embedded Tableau dashboards stay white in both.
  */
 
 :root {
+  color-scheme: light;
+
   /* Colour */
   --bg: #ffffff;
   --surface: #f6f7f9;
   --ink: #1f2328;
-  --muted: #5b6470;
+  --muted: #505863;
   --rule: #e3e6ea;
-  --accent: #3a6290;
-  /* Quadrant fills: exact matches to the dashboards. Only ever mean their quadrant. */
+  --accent: #355983;
+  --accent-strong: #2a4769; /* hover on filled accent buttons */
+  --on-accent: #ffffff; /* text on --accent fills */
+  --inverse-bg: #1f2328; /* skip links */
+  --inverse-ink: #ffffff;
+  --footer-bg: #1f2328;
+  --footer-ink: #ffffff;
+  --footer-muted: #d0d5db;
+  --chip-bg: #ffffff; /* label chips on the quadrant motif */
+  --selection: #d8e3f0;
+  --shimmer: rgb(255 255 255 / 0.8);
+  --shadow-rgb: 31 35 40;
+  /* Quadrant fills: exact matches to the dashboards. Only ever mean their quadrant.
+     The same in both themes. */
   --both: #4e79a7;
   --spotify: #59a14f;
   --youtube: #e15759;
   --neither: #f28e2b;
-  /* Quadrant text colours (WCAG AA on white) */
-  --both-text: #3a6290;
-  --spotify-text: #3b7a34;
-  --youtube-text: #c0393b;
-  --neither-text: #b35c0c;
+  /* Quadrant text colours. Slightly deeper than the build plan's (#3a6290, #3b7a34,
+     #c0393b, #b35c0c) so they stay WCAG AA on the page-wide colour wash too; the same
+     goes for --muted and --accent above. */
+  --both-text: #355983;
+  --spotify-text: #30632a;
+  --youtube-text: #9f2f31;
+  --neither-text: #884609;
+  /* Page-wide red/green background wash (see "Background wash" below) */
+  --wash-strength: 35%;
   --placeholder: #fff4d6;
   --placeholder-border: #e0b84c;
+  --placeholder-ink: #1f2328;
 
   /* Type: sizes scale from the phone value (390 px) to the desktop value (1440 px) */
   --font-display: var(--font-space-grotesk), "Segoe UI", system-ui, sans-serif;
@@ -66,6 +86,38 @@
   --stagger: 80ms;
 }
 
+/* Dark theme: set on <html data-theme="dark"> by the toggle (or the reader's system
+   setting on a first visit). Only colours change; the quadrant fills stay the same. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #111418;
+  --surface: #181c21;
+  --ink: #e6e8eb;
+  --muted: #b1b8c3;
+  --rule: #2c323a;
+  --accent: #9abbe3;
+  --accent-strong: #b0cbec;
+  --on-accent: #111418;
+  --inverse-bg: #e6e8eb;
+  --inverse-ink: #111418;
+  --footer-bg: #0a0c0f;
+  --footer-ink: #ffffff;
+  --footer-muted: #b5bcc6;
+  --chip-bg: #111418;
+  --selection: #2b4466;
+  --shimmer: rgb(255 255 255 / 0.07);
+  --shadow-rgb: 0 0 0;
+  --both-text: #99bae4;
+  --spotify-text: #85c87c;
+  --youtube-text: #f4a3a4;
+  --neither-text: #f5a75d;
+  --wash-strength: 42%;
+  --placeholder: #3a3116;
+  --placeholder-border: #9c7a26;
+  --placeholder-ink: #f3e2b3;
+}
+
 @media (max-width: 767px) {
   :root {
     --gutter: 16px;
@@ -85,7 +137,6 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   interpolate-size: allow-keywords;
-  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -104,6 +155,75 @@ body {
   line-height: 1.6;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Background wash, behind the whole page, in the dashboards' own platform colours:
+ * YouTube red glows from the top left of the screen and Spotify green from the bottom
+ * right, where those groups sit on the scatter plot. As one swells and drifts in, the
+ * other fades back to its corner, then they swap (opacity and transform only, every
+ * 12 s). Section bands are see-through; cards, the nav, dashboards and the footer stay
+ * solid. Text colours are tuned to stay WCAG AA at the wash's strongest point.
+ * With reduced motion the wash holds still.
+ */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+body::before {
+  background: radial-gradient(
+    ellipse 70% 80% at 10% 14%,
+    color-mix(in srgb, var(--youtube) var(--wash-strength), transparent) 0%,
+    color-mix(in srgb, var(--youtube) calc(var(--wash-strength) * 0.55), transparent) 38%,
+    transparent 75%
+  );
+}
+
+body::after {
+  background: radial-gradient(
+    ellipse 70% 80% at 90% 86%,
+    color-mix(in srgb, var(--spotify) var(--wash-strength), transparent) 0%,
+    color-mix(in srgb, var(--spotify) calc(var(--wash-strength) * 0.55), transparent) 38%,
+    transparent 75%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body::before {
+    animation: wash-red 12s ease-in-out infinite alternate;
+  }
+
+  body::after {
+    animation: wash-green 12s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes wash-red {
+  from {
+    opacity: 1;
+    transform: translate(4%, 4%) scale(1.08);
+  }
+  to {
+    opacity: 0.12;
+    transform: translate(-4%, -4%) scale(0.9);
+  }
+}
+
+@keyframes wash-green {
+  from {
+    opacity: 0.12;
+    transform: translate(4%, 4%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-4%, -4%) scale(1.08);
+  }
 }
 
 h1,
@@ -175,7 +295,7 @@ summary {
 }
 
 ::selection {
-  background: #d8e3f0;
+  background: var(--selection);
 }
 
 /* Anchors land below the sticky nav (and, inside Explore, below the chapter strip). */
@@ -227,8 +347,8 @@ summary {
   z-index: 2000;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-btn);
-  background: var(--ink);
-  color: #fff;
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
   font-size: var(--fs-label);
   font-weight: 600;
   text-decoration: none;
@@ -246,7 +366,7 @@ summary {
   border: 1px dashed var(--placeholder-border);
   border-radius: 4px;
   background: var(--placeholder);
-  color: var(--ink);
+  color: var(--placeholder-ink);
   font-style: normal;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;

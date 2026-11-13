@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { MotionReady } from "@/components/motion/MotionReady";
 import { site } from "@/content/site";
 import { EMBEDDING_API_SRC } from "@/lib/tableau";
+import { THEME_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -44,8 +45,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#111418" },
+  ],
 };
 
 /*
@@ -64,7 +67,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: motionFlag }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT + motionFlag }} />
         <link rel="preconnect" href="https://public.tableau.com" />
       </head>
       <body>

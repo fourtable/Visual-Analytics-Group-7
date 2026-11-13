@@ -22,7 +22,12 @@ export default function Home() {
       <Nav
         siteName={site.name}
         sections={sections}
-        labels={{ navLabel: ui.navLabel, menuOpen: ui.menuOpen, menuClose: ui.menuClose }}
+        labels={{
+          navLabel: ui.navLabel,
+          menuOpen: ui.menuOpen,
+          menuClose: ui.menuClose,
+          darkMode: ui.darkMode,
+        }}
       />
       <main id="main" tabIndex={-1}>
         <Hero />

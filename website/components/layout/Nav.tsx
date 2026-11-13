@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cx } from "@/lib/cx";
 import { ScrollProgress } from "./ScrollProgress";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Nav.module.css";
 
 /** Matches --nav-h in app/globals.css. */
@@ -11,7 +12,7 @@ const NAV_HEIGHT = 64;
 
 type SectionEntry = { id: string; nav: string | null };
 
-type Labels = { navLabel: string; menuOpen: string; menuClose: string };
+type Labels = { navLabel: string; menuOpen: string; menuClose: string; darkMode: string };
 
 function BrandMark() {
   return (
@@ -115,64 +116,67 @@ export function Nav({
           <BrandMark />
           {siteName}
         </a>
-        <nav aria-label={labels.navLabel}>
-          <ul ref={listRef} className={styles.list} role="list">
-            {items.map((item) => (
-              <li key={item.id}>
-                <a
-                  className={styles.link}
-                  href={`#${item.id}`}
-                  aria-current={activeNav === item.id ? "location" : undefined}
-                >
-                  <span>{item.nav}</span>
-                </a>
-              </li>
-            ))}
-            <span ref={indicatorRef} className={styles.indicator} aria-hidden="true" />
-          </ul>
-          <button
-            ref={buttonRef}
-            type="button"
-            className={styles.menuButton}
-            aria-expanded={open}
-            aria-controls="nav-panel"
-            onClick={() => setOpen((value) => !value)}
-          >
-            <svg
-              className={styles.menuIcon}
-              viewBox="0 0 18 18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              aria-hidden="true"
-              focusable="false"
-            >
-              {open ? (
-                <path d="M4 4l10 10M14 4 4 14" />
-              ) : (
-                <path d="M2.5 4.5h13M2.5 9h13M2.5 13.5h13" />
-              )}
-            </svg>
-            {open ? labels.menuClose : labels.menuOpen}
-          </button>
-          <div ref={panelRef} id="nav-panel" className={styles.panel} hidden={!open}>
-            <ul className={styles.panelList} role="list">
+        <div className={styles.end}>
+          <nav aria-label={labels.navLabel}>
+            <ul ref={listRef} className={styles.list} role="list">
               {items.map((item) => (
                 <li key={item.id}>
                   <a
-                    className={styles.panelLink}
+                    className={styles.link}
                     href={`#${item.id}`}
                     aria-current={activeNav === item.id ? "location" : undefined}
-                    onClick={() => setOpen(false)}
                   >
-                    {item.nav}
+                    <span>{item.nav}</span>
                   </a>
                 </li>
               ))}
+              <span ref={indicatorRef} className={styles.indicator} aria-hidden="true" />
             </ul>
-          </div>
-        </nav>
+            <button
+              ref={buttonRef}
+              type="button"
+              className={styles.menuButton}
+              aria-expanded={open}
+              aria-controls="nav-panel"
+              onClick={() => setOpen((value) => !value)}
+            >
+              <svg
+                className={styles.menuIcon}
+                viewBox="0 0 18 18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                {open ? (
+                  <path d="M4 4l10 10M14 4 4 14" />
+                ) : (
+                  <path d="M2.5 4.5h13M2.5 9h13M2.5 13.5h13" />
+                )}
+              </svg>
+              {open ? labels.menuClose : labels.menuOpen}
+            </button>
+            <div ref={panelRef} id="nav-panel" className={styles.panel} hidden={!open}>
+              <ul className={styles.panelList} role="list">
+                {items.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      className={styles.panelLink}
+                      href={`#${item.id}`}
+                      aria-current={activeNav === item.id ? "location" : undefined}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.nav}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+          <ThemeToggle label={labels.darkMode} />
+        </div>
       </div>
       <ScrollProgress />
     </header>

@@ -106,6 +106,17 @@ Copy rules from the build plan still apply: association wording only ("tends to"
 The social preview image (`public/og-image.png`, 1200 × 630) is rendered with
 `npm run og`; its words are inside `scripts/make-og-image.mjs`.
 
+## Dark mode
+
+The moon/sun button in the nav switches between light and dark themes. A reader's choice
+is saved in their browser; on a first visit the site follows their system setting
+(without JavaScript it stays light). The theme is a `data-theme` attribute on `<html>`,
+set by a small script in `app/layout.tsx` before the page paints, and `app/globals.css`
+redefines the colour tokens for `[data-theme="dark"]`. Use the tokens (`--bg`, `--ink`,
+`--on-accent`, `--inverse-bg`, …) rather than hard-coded colours so new styles work in
+both themes. The quadrant colours are identical in both themes so they still match the
+dashboards, and the embedded Tableau dashboards themselves stay white.
+
 ## Deploy (Vercel)
 
 The site is plain static files (`out/`), so any static host works. On Vercel:
@@ -142,10 +153,14 @@ Vercel previews are protected by Vercel login by default; turn that off under
 4. **Interaction and motion.** Each dashboard has an embed bar with Full screen (Open
    interactive view on phones), a caption naming the control to use, and a "Try this"
    tip. Motion is limited to: section reveals, count-up numbers, growing bars (listening
-   share, quadrant split, data funnel), the hero motif, a scroll-progress line, the nav
-   underline and shadow, the chapter strip fill, the embed loading shimmer and smooth
-   accordions. With reduced motion turned on, everything appears in its final state
-   and state changes happen instantly; nothing moves on or over a dashboard.
+   share, quadrant split, data funnel), the hero motif, a slow red-to-green background
+   wash behind the whole page (the dashboards' YouTube red and Spotify green, swelling
+   and drifting in turn every 12 seconds; text colours are tuned to stay WCAG AA on
+   it), a scroll-progress line, the nav underline and shadow, the chapter strip fill,
+   the embed loading shimmer and smooth accordions. With reduced motion turned on,
+   everything appears in its final state (the wash holds still) and state changes
+   happen instantly; nothing moves on or over a dashboard, which sit on solid white
+   frames. A light/dark theme toggle sits in the nav.
 5. **Hosting and deployment.** The code is in the GitHub repository; Vercel builds the
    `website` folder with the Next.js preset on every push, with a preview link for each
    branch or pull request and production on `main`.

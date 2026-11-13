@@ -4,7 +4,7 @@ import { cx } from "@/lib/cx";
 import { Text } from "./Text";
 import styles from "./Section.module.css";
 
-/** A full-width band. Bands alternate --bg and --surface so sections are easy to tell apart. */
+/** A full-width, see-through band; the page-wide colour wash shows through every section. */
 export function Section({
   id,
   tone = "bg",
@@ -22,7 +22,8 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={cx(styles.band, tone === "surface" && styles.surface, className)}
+      className={cx(styles.band, className)}
+      data-tone={tone}
     >
       {children}
     </section>

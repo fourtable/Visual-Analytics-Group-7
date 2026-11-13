@@ -63,7 +63,7 @@
 
 .link[aria-current="step"] .num {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .link[aria-current="step"] .label {
@@ -133,7 +133,7 @@
   padding: var(--space-2) var(--gutter) var(--space-3);
   border-bottom: 1px solid var(--rule);
   background: var(--bg);
-  box-shadow: 0 10px 24px rgb(31 35 40 / 0.1);
+  box-shadow: 0 10px 24px rgb(var(--shadow-rgb) / 0.1);
 }
 
 .compactLink {

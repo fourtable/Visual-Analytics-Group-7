@@ -39,15 +39,15 @@
   fill: var(--neither);
 }
 
-/* Labels sit on white chips in the -text colours, so they pass AA on any square. */
+/* Labels sit on page-coloured chips in the -text colours, so they pass AA on any square. */
 .label {
   position: absolute;
   width: max-content;
   max-width: 46%;
   padding: 4px 10px;
   border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 1px 2px rgb(31 35 40 / 0.12);
+  background: var(--chip-bg);
+  box-shadow: 0 1px 2px rgb(var(--shadow-rgb) / 0.12);
   font-size: var(--fs-label);
   font-weight: 600;
   line-height: 1.25;

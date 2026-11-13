@@ -51,11 +51,11 @@
 
 .primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .primary:hover {
-  background: #2f5178;
+  background: var(--accent-strong);
 }
 
 .icon {

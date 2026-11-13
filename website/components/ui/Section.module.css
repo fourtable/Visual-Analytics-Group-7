@@ -1,10 +1,10 @@
+/* All bands are see-through so the page-wide colour wash flows from section to section
+   without visible seams; sections are separated by spacing and headings. <Section tone>
+   still sets data-tone="surface" on alternate bands, so a tint could be brought back
+   with a `.band[data-tone="surface"]` rule if wanted. */
 .band {
   padding-block: var(--section-pad);
-  background: var(--bg);
-}
-
-.surface {
-  background: var(--surface);
+  background: transparent;
 }
 
 .header {

@@ -1,3 +1,4 @@
+/* The red/green colour wash behind the hero is the page-wide one in app/globals.css. */
 .hero {
   display: flex;
   align-items: center;
