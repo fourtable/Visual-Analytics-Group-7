@@ -69,7 +69,7 @@ export const dashboards: Dashboard[] = [
       shows:
         "The same scatter plot, with a song card. Click any song to see its title, artist, release date, quadrant, streams, views and audio features.",
       insight:
-        "The platforms overlap a lot, but the off-diagonal corners hold real songs that only one audience embraced. [Optional: name one song from each corner.]",
+        "The platforms overlap a lot, but the off-diagonal corners hold real songs that only one audience embraced. For example, PSY's Gentleman has over 1.5 billion YouTube views but under 100 million Spotify streams.",
       why: "It moves the reader from patterns to individual songs, and raises the next question: does the sound explain the split?",
       tip: "Click any dot in the bottom-right corner to open the song card of a Spotify-only hit.",
     },

@@ -5,21 +5,6 @@
   font-size: var(--fs-label);
 }
 
-.footer a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.footer a:focus-visible {
-  outline-color: #fff;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1.2fr;
-  gap: var(--space-6) var(--space-7);
-}
-
 .site {
   margin-bottom: var(--space-2);
   font-family: var(--font-display);
@@ -32,30 +17,9 @@
   color: #d0d5db;
 }
 
-.heading {
-  margin-bottom: var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #d0d5db;
-}
-
-.list {
-  display: grid;
-  gap: var(--space-2);
-}
-
 .disclaimer {
-  margin-top: var(--space-7);
+  margin-top: var(--space-6);
   padding-top: var(--space-5);
   border-top: 1px solid rgb(255 255 255 / 0.18);
   color: #d0d5db;
-}
-
-@media (max-width: 767px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
 }

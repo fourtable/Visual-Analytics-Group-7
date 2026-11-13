@@ -18,7 +18,9 @@ export type Pattern = AccordionEntry & { drawsOn: string };
 
 /**
  * Section 6, Deep Dive: the site's own addition (no report equivalent).
- * Pick the three songs from the song card on Where the Platforms Disagree.
+ * Songs picked from the dashboard data (spotify_youtube_release_date.csv): each is in
+ * the same quadrant under both Popularity Measure settings. Streams and views are the
+ * song card's totals; features are compared with the dataset average.
  */
 export const deepDive = {
   heading: "Deep dive",
@@ -28,8 +30,8 @@ export const deepDive = {
     heading: "Song spotlights",
     byLabel: "by",
     labels: {
-      streams: "Spotify streams",
-      views: "YouTube views",
+      streams: "Spotify streams (total)",
+      views: "YouTube views (total)",
       year: "Released",
       features: "Standout features",
     },
@@ -38,41 +40,44 @@ export const deepDive = {
       {
         title: "Spotify Darling",
         quadrant: "spotify",
-        song: "[Song]",
-        artist: "[Artist]",
-        streams: "[streams]",
-        views: "[views]",
-        year: "[release year]",
-        features: "[two standout audio features]",
-        insight: "[One insight line]",
+        song: "Wonderwall (Remastered)",
+        artist: "Oasis",
+        streams: "1.57B",
+        views: "5.9M",
+        year: "1995",
+        features: "Fast tempo (174 BPM) and low danceability (0.38)",
+        insight:
+          "Over 1.5 billion Spotify streams for a 1995 song, while the YouTube video matched to it has under 6 million views.",
         where:
-          "Its dot sits in the bottom-right corner, among the Spotify-only hits, at [streams] streams and [views] views.",
+          "Its dot sits in the bottom-right corner, among the Spotify-only hits. Click it to open its song card.",
       },
       {
         title: "YouTube Darling",
         quadrant: "youtube",
-        song: "[Song]",
-        artist: "[Artist]",
-        streams: "[streams]",
-        views: "[views]",
-        year: "[release year]",
-        features: "[two standout audio features]",
-        insight: "[One insight line]",
+        song: "Wheels on the Bus",
+        artist: "CoComelon",
+        streams: "83.4M",
+        views: "4.90B",
+        year: "2019",
+        features: "Very danceable (0.94) and very upbeat (valence 0.97)",
+        insight:
+          "Like other children's songs in the data, it's watched far more on YouTube than it's streamed on Spotify.",
         where:
-          "Its dot sits in the top-left corner, among the YouTube-only hits, at [streams] streams and [views] views.",
+          "Its dot sits in the top-left corner, among the YouTube-only hits. Click it to open its song card.",
       },
       {
         title: "Agreed Hit",
         quadrant: "both",
-        song: "[Song]",
-        artist: "[Artist]",
-        streams: "[streams]",
-        views: "[views]",
-        year: "[release year]",
-        features: "[two standout audio features]",
-        insight: "[One insight line]",
+        song: "Shape of You",
+        artist: "Ed Sheeran",
+        streams: "3.36B",
+        views: "5.91B",
+        year: "2017",
+        features: "Very upbeat (valence 0.93) and louder than average (−3.2 dB)",
+        insight:
+          "Billions of plays on both platforms, and louder than most songs, like the typical hit on both.",
         where:
-          "Its dot sits in the top-right corner, among the hits on both, at [streams] streams and [views] views.",
+          "Its dot sits in the top-right corner, among the hits on both. Click it to open its song card.",
       },
     ] satisfies Spotlight[],
   },

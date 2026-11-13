@@ -65,7 +65,7 @@ touch React code:
 | `deepDive.ts`   | Song spotlights and patterns                                        |
 | `soWhat.ts`     | Conclusion, implications, future work                               |
 | `methods.ts`    | Data funnel, how we did it, challenges, limits                      |
-| `references.ts` | Footer links and references                                         |
+| `references.ts` | Footer (team, course line, disclaimer)                              |
 
 Inside any string:
 
@@ -152,14 +152,14 @@ Vercel previews are protected by Vercel login by default; turn that off under
 
 ## Before launch
 
-**Placeholders still on the page** (search the content files for `[`):
+**Placeholders:** none left (team names, song spotlights and the Where the Platforms
+Disagree example are filled; the footer has no project links or references by choice).
+If you add new text with `[...]`, it shows highlighted until filled.
 
-- Team members' full names (hero and footer)
-- The three song spotlights in Deep Dive (pick them from the song card on Where the
-  Platforms Disagree)
-- Optional: one song from each off-diagonal corner (Where the Platforms Disagree caption)
-- Footer links: full report, GitHub repository (the repo is currently private, so make
-  it public or link a public copy), user guide
+**Song choices** (from `dataset/spotify_youtube_release_date.csv`, each in the same
+quadrant under both Popularity Measure settings): Spotify Darling, Wonderwall
+(Remastered) by Oasis; YouTube Darling, Wheels on the Bus by CoComelon; Agreed Hit,
+Shape of You by Ed Sheeran; caption example, Gentleman by PSY (YouTube-only hit).
 
 **Confirm:**
 

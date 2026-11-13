@@ -38,7 +38,7 @@ export const hero = {
     "We compared 17,380 songs on Spotify and YouTube to see which audio features go with popularity on each platform, and whether a hit on one is a hit on the other.",
   primary: { label: "See the findings", href: "#findings" },
   secondary: { label: "Explore the dashboards", href: "#explore" },
-  team: "[Team member full names]",
+  team: "By Samuel, Josh, John and Sze Hao",
   motif: {
     label:
       "The four popularity groups as a 2×2 grid, laid out like the dashboards' scatter plot: YouTube-only hit top left, Hit on both top right, Neither bottom left, Spotify-only hit bottom right. Spotify streams rise to the right; YouTube views rise upwards.",
