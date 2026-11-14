@@ -6,7 +6,7 @@ import type { Quadrant } from "./types";
  */
 export const howToRead = {
   heading: "How to read our charts",
-  intro: "The dashboards use a few terms throughout. Here they are, once.",
+  intro: "The dashboards use a few terms throughout. Here are the definitions.",
 
   quadrants: {
     heading: "The four quadrants",

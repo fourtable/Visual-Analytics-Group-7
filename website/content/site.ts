@@ -5,7 +5,7 @@
 
 export const site = {
   /** Short name on the left of the nav bar. Draft: team to confirm. */
-  name: "Dopamine Trap",
+  name: "Bob and Friends",
   metaTitle: "What Makes a Song a Dopamine Trap? · IS428",
   description:
     "How audio features go with song popularity on Spotify and YouTube, explored through interactive dashboards.",
@@ -33,7 +33,7 @@ export const sections: ReadonlyArray<{ id: SectionId; nav: string | null }> = [
 
 export const hero = {
   eyebrow: "IS428 Visual Analytics · Group G2T7 · AY2026/27",
-  title: "What Makes a Song a Dopamine Trap?",
+  title: "Decoding the Hit",
   subtitle:
     "We compared 17,380 songs on Spotify and YouTube to see which audio features go with popularity on each platform, and whether a hit on one is a hit on the other.",
   primary: { label: "See the findings", href: "#findings" },
