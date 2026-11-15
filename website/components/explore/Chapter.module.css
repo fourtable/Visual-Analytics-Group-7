@@ -6,6 +6,16 @@
   padding-top: var(--space-8);
 }
 
+.chapter + .chapter {
+  margin-top: var(--space-9);
+  border-top: 1px solid var(--rule);
+  background: linear-gradient(
+    180deg,
+    rgb(var(--shadow-rgb) / 0.035) 0,
+    rgb(var(--shadow-rgb) / 0) 16rem
+  );
+}
+
 .kicker {
   margin-bottom: var(--space-2);
   color: var(--accent);
@@ -30,5 +40,9 @@
 @media (max-width: 767px) {
   .chapter {
     padding-top: var(--space-8);
+  }
+
+  .chapter + .chapter {
+    margin-top: var(--space-8);
   }
 }
