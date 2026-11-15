@@ -16,7 +16,7 @@ export const problem = {
 
   background: {
     heading: "Background",
-    text: "Music now lives on audio and video platforms alike. Listeners spend about a third of their music time on audio streaming and almost as much on video, but each platform counts popularity its own way: Spotify counts streams, YouTube counts views.",
+    text: "Music today lives on both audio and video platforms. Listeners spend roughly a third of their music time on audio streaming and almost as much on video streaming. Yet, popularity isn't measured equally: Spotify counts streams, while YouTube counts views.",
     stats: [
       {
         value: "US$31.7B",
@@ -42,12 +42,14 @@ export const problem = {
     cards: [
       {
         title: "For labels",
-        body: "Signing and promoting an artist is a costly bet. Knowing which audio features go with popularity on each platform adds evidence when A&R teams evaluate tracks and plan marketing.",
+          subtitle: "Less guesswork. Smarter bets",
+          body: "Breaking into the charts takes more than talent. By uncovering which audio features are associated with popularity on Spotify and YouTube, labels can make more informed decisions when scouting artists and planning promotional strategies.",
       },
       {
         title: "For listeners",
-        body: "Ever noticed that popular songs seem to sound alike? This shows which features they actually share.",
-      },
+          subtitle: "Is there a formula behind your favourite hits?",
+          body: "We uncover the audio characteristics shared by popular tracks and explore whether different platforms are associated with different musical trends.",
+        },
     ],
   },
 
@@ -56,27 +58,27 @@ export const problem = {
     cards: [
       {
         title: "Platform dashboards",
-        body: "Spotify for Artists and YouTube Studio go deep, but each sees only its own platform.",
+        body: "Spotify for Artists and YouTube Studio go deep, but stay in their own lanes. You cannot directly compare how a track performs across both platforms.",
       },
       {
         title: "Aggregators",
-        body: "Chartmetric and Soundcharts combine platforms, but track counts over time, not how songs sound.",
+        body: "Chartmetric and Soundcharts bring platform data together, but focus on tracking streams, views and playlists over time — not exploring the audio features behind a song.",
       },
       {
         title: "Community dashboards",
-        body: "Projects on Tableau Public explore audio features, but almost all use Spotify data alone.",
+        body: "Tableau Public projects explore how audio features relate to popularity, but most rely on Spotify data alone, leaving YouTube out of the picture.",
       },
     ],
-    line: "Nobody lets you compare, side by side and interactively, how a song's sound goes with popularity on an audio platform and a video platform.",
+    line: "No existing tool brings it all together: an interactive, side-by-side comparison of how a song's audio features relate to popularity on Spotify and YouTube.",
   },
 
   question: {
     heading: "Our question",
     text: "How are audio features associated with track popularity across Spotify and YouTube?",
     objectives: [
-      "Find how songs popular on both platforms differ from those popular on only one.",
-      "Compare audio features across popularity groups.",
-      "Identify the audio features associated with popularity on each platform.",
+      "**Distinguish cross-platform hits:** Identify how songs popular on both platforms differ from those popular on only one.",
+      "**Compare audio characteristics:** Explore how audio features vary across different popularity groups.",
+      "**Identify platform-specific patterns:** Determine which audio features are associated with popularity on Spotify and YouTube respectively.",
     ],
   },
 };

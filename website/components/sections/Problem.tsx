@@ -48,7 +48,13 @@ export function Problem() {
         <Block heading={why.heading}>
           <div className={styles.grid2}>
             {why.cards.map((card) => (
-              <TextCard key={card.title} title={card.title} body={card.body} headingLevel={4} />
+              <TextCard
+                key={card.title}
+                title={card.title}
+                subtitle={card.subtitle}
+                body={card.body}
+                headingLevel={4}
+              />
             ))}
           </div>
         </Block>

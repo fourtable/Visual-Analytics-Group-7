@@ -21,11 +21,13 @@ export function Card({ as = "div", className, children, ...rest }: Props) {
 /** The common case: a card with an h3 title and one paragraph of content copy. */
 export function TextCard({
   title,
+  subtitle,
   body,
   as,
   headingLevel = 3,
 }: {
   title: string;
+  subtitle?: string;
   body: string;
   as?: Props["as"];
   headingLevel?: 3 | 4;
@@ -36,6 +38,11 @@ export function TextCard({
       <Heading className={styles.title}>
         <Text>{title}</Text>
       </Heading>
+      {subtitle && (
+        <p className={styles.subtitle}>
+          <Text>{subtitle}</Text>
+        </p>
+      )}
       <p className={styles.body}>
         <Text>{body}</Text>
       </p>
