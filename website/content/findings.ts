@@ -26,7 +26,7 @@ export const findings = {
         label: "of songs are hits on only one platform",
         measure: "Age-adjusted",
       },
-      text: "About one song in five is a hit on only one platform. 15% are hits on both, and 65% on neither.",
+      text: "About one song in five are hits on only one platform. Another 15% are hits on both, while 65% are hits on neither.",
       link: { label: evidence, dashboard: "dash-defining-a-hit" },
     },
     {
@@ -41,21 +41,21 @@ export const findings = {
     },
     {
       stat: { value: "Longer", label: "On YouTube", measure: "Age-adjusted" },
-      text: "On YouTube, song length joins the list: its top three are loudness, instrumentalness and duration.",
+      text: "On YouTube, duration joins loudness and instrumentalness as YouTube's top three features associated with popularity.",
       link: { label: evidence, dashboard: "dash-top3-platform" },
     },
     {
       stat: { value: "Steeper on YouTube", label: "Loudness and energy", measure: "Age-adjusted" },
-      text: "Loudness and energy rise more steeply from less to more popular songs on YouTube than on Spotify.",
-      setting: "set Select Feature to Loudness.",
+      text: "Loudness and energy have stronger positive associations with popularity on YouTube than on Spotify.",
+      setting: "select **Loudness** to explore the comparison.",
       link: { label: evidence, dashboard: "dash-hit-sound" },
     },
     {
       stat: { value: "Shrinks", label: "Within each artist", measure: "Age-adjusted" },
-      text: "Compared with the same artist's other songs, every audio-feature difference shrinks. The artist may matter more than the sound of any one song.",
+      text: "Audio-feature differences become smaller when songs are compared against the same artist's other tracks. This suggests artist-level differences may matter more than individual song characteristics.",
       link: { label: evidence, dashboard: "dash-sound-or-artist" },
     },
   ] satisfies Finding[],
   conclusion:
-    "What goes with popularity barely depends on the platform: loudness, instrumentalness and acousticness matter most on both.",
+    "Across both platforms: LOUDNESS, INSTRUMENTALNESS and ACOUSTICNESS show the strongest associations with popularity.",
 };

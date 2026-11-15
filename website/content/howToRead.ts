@@ -16,9 +16,9 @@ export const howToRead = {
       youtube: "In YouTube's top 25%, but not Spotify's",
       neither: "Not in the top 25% on either platform",
     } satisfies Record<Quadrant, string>,
-    note: 'A Spotify hit needs at least about 121.75 million streams, and a YouTube hit about 59.11 million views, adjusted for song age. "Neither" doesn\'t mean unpopular: it includes songs with plenty of streams and views just below the top 25%.',
+    note: 'A Spotify hit has needs at least ~121.75 million age-adjusted streams, while a YouTube hit ~59.11 million age-adjusted views. "Neither" doesn\'t mean unpopular; these songs simply fall below the top 25% on both platforms.',
     /** Shown after ui.rawPrefix. Read from Defining a Hit with Raw counts selected (13 Nov 2026). */
-    rawNote: "about 134.74 million streams and 65.49 million views.",
+    rawNote: "~134.74 million streams and ~65.49 million views, without adjusting for song age.",
   },
 
   glossary: {
