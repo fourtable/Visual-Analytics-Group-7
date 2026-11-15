@@ -30,23 +30,23 @@ export const howToRead = {
       },
       {
         title: "Log scale",
-        body: "A few songs have far more plays than the rest, so the scatter plots use log scales. Each gridline is ten times the one below.",
+        body: "Song popularity varies widely. A log scale compresses this range so patterns among less and more popular songs are easier to see. Each gridline represents a tenfold increase.",
       },
       {
         title: "Adjusted for song age",
-        body: "Song age is the time since a song's first release. The adjusted measure accounts for how long a song has had to collect plays; Raw counts shows the totals.",
+        body: "Accounts for how long a song has had to accumulate plays, making comparisons between newer and older songs fairer. Raw counts show total plays without adjustment.",
       },
       {
         title: "SD gap (z-score)",
-        body: "How far a group's average sits from the average song, in standard deviations. +0.35 means 0.35 SD above average. Gaps between −0.15 and +0.15 count as small. This is a reading guide, not a significance test.",
+        body: "Shows how far a group's average is from the overall average, in standard deviations. +0.35 means 0.35 SD above average; gaps within ±0.15 are considered small. This is not a significance test.",
       },
       {
         title: "Spearman ρ (rho)",
-        body: "From −1 to 1, how closely a feature rises or falls with popularity. Values between −0.1 and 0.1 count as too small to matter.",
+        body: "Measures the strength and direction of the relationship between an audio feature and popularity. Values range from −1 to +1; values within ±0.1 indicate a very weak relationship.",
       },
       {
         title: "Within-artist comparison",
-        body: "Compares each song with the same artist's other songs, to separate the song from the artist.",
+        body: "Compares each song against the same artist's other songs, helping distinguish song-level patterns from artist-level differences.",
       },
     ],
   },
