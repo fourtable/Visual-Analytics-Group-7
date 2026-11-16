@@ -85,7 +85,7 @@ export const methods = {
       },
       {
         title: "Tools",
-        body: "Python (pandas, NumPy, Matplotlib, SciPy); Deezer, Wikidata and MusicBrainz for release dates; Tableau Desktop and Tableau Public; HTML, CSS and JavaScript; GitHub and Vercel.",
+        body: "Python (pandas, NumPy, Matplotlib, SciPy); Deezer, Wikidata and MusicBrainz for release dates; Tableau Desktop and Tableau Public; CSS, React and TypeScript; GitHub and Vercel.",
       },
     ] satisfies AccordionEntry[],
   },
